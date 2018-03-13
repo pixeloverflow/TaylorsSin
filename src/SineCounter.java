@@ -20,16 +20,20 @@ public class SineCounter {
         return result;
     }
 
+    public double getRadians(){
+        return x;
+    }
+
     private void convert(String[] input) throws Exception {
         if (input.length != 3) {
             throw new Exception("Incorrect number of arguments");
         }
 
-        x = Integer.parseInt(input[0]);
+        x = Double.parseDouble(input[0]);
 
         char angle = input[1].toLowerCase().charAt(0);
         if (angle=='r' || angle == 'p') {
-            x -= 2*(x/2);
+            x -= 2*(int)(x/2);
         }
         else if (angle=='d') {
             x %= 360;
@@ -47,10 +51,11 @@ public class SineCounter {
         if (addOrSubt) result += nominator/denominator;
         else result -= nominator/denominator;
 
-        for (int i=0; i<2 ;++i){
-            factorial += 1;
-            denominator *= factorial;
-        }
+        factorial += 1;
+        denominator *= factorial;
+        factorial += 1;
+        denominator *= factorial;
+
         nominator *= x * x;
         addOrSubt = !addOrSubt;
         --steps;
